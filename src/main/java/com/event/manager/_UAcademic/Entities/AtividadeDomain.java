@@ -2,6 +2,7 @@ package com.event.manager._UAcademic.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,11 @@ public class AtividadeDomain {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private CategoriaDomain categoria;
+
+    @OneToMany(mappedBy = "atividade")
+    private List<BlocoDomain> blocos = new
+            ArrayList<>();
+
 
     @OneToMany(mappedBy = "id.atividade")
     private Set<ParticipantePorAtividade> itens = new HashSet<>();

@@ -14,8 +14,12 @@ public class BlocoDomain {
     private Instant fim;
 
 
-    @OneToOne
-    @MapsId
+//    @OneToOne
+//    @MapsId
+//    private AtividadeDomain atividade;
+
+    @ManyToOne
+    @JoinColumn(name = "atividade_id")
     private AtividadeDomain atividade;
 
 
