@@ -2,6 +2,10 @@ package com.event.manager._UAcademic.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_atividade")
 public class AtividadeDomain {
@@ -19,6 +23,23 @@ public class AtividadeDomain {
         this.preco = preco;
     }
 
+    @OneToOne(mappedBy = "atividade",
+    cascade = CascadeType.ALL)
+    private BlocoDomain bloco;
+
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private CategoriaDomain categoria;
+
+    @OneToMany(mappedBy = "id.atividade")
+    private Set<ParticipantePorAtividade> itens = new HashSet<>();
+    public Set<ParticipantePorAtividade> getParticipantes() {
+        return itens;
+    }
+    public List<ParticipanteDomain> getParticipanteDomain() {
+        return itens.stream().map(x -> x.getParticipanteDomain()).toList();
+    }
     public AtividadeDomain() {
     }
 

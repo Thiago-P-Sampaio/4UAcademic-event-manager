@@ -13,6 +13,14 @@ public class BlocoDomain {
     private Instant inicio;
     private Instant fim;
 
+
+    @OneToOne
+    @MapsId
+    private AtividadeDomain atividade;
+
+
+
+
     public BlocoDomain(int id, Instant inicio, Instant fim) {
         this.id = id;
         this.inicio = inicio;

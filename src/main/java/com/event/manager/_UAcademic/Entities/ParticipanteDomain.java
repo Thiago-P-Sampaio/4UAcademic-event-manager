@@ -2,6 +2,10 @@ package com.event.manager._UAcademic.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table (name = "tb_participante")
 public class ParticipanteDomain {
@@ -10,6 +14,16 @@ public class ParticipanteDomain {
     private int id;
     private String nome;
     private String email;
+
+    @OneToMany(mappedBy = "id.participante")
+    private Set<ParticipantePorAtividade> itens = new HashSet<>();
+    public Set<ParticipantePorAtividade> getAtividades() {
+        return itens;
+    }
+    public List<AtividadeDomain> getAtividadesDomain() {
+        return itens.stream().map(x -> x.getAtividade()).toList();
+    }
+
 
 
     public ParticipanteDomain(int id, String email, String nome) {

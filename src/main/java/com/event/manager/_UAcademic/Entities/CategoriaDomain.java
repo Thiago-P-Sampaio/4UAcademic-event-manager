@@ -2,6 +2,9 @@ package com.event.manager._UAcademic.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table (name = "tb_categoria")
 public class CategoriaDomain {
@@ -9,6 +12,13 @@ public class CategoriaDomain {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String descricao;
+
+
+    @OneToMany(mappedBy = "categoria")
+    private List<AtividadeDomain> atividades = new
+            ArrayList<>();
+
+
 
     public CategoriaDomain(String descricao, int id) {
         this.descricao = descricao;
